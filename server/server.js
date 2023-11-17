@@ -11,9 +11,28 @@ app.use(express.static(path.join(__dirname, '../public')));
 // SQLite database setup
 const db = new sqlite3.Database(':memory:');
 
-// Define a simple endpoint
-app.get('/api/greeting', (req, res) => {
-    res.json({ message: 'Hello, Lightweight World!' });
+// Create a gyms table in the database
+db.serialize(() => {
+    db.run(`
+        CREATE TABLE gyms (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            city TEXT,
+            picture TEXT
+        )
+    `);
+});
+
+// Define a simple endpoint to get all gyms
+app.get('/api/gyms', (req, res) => {
+    // Fetch all gyms from the database
+    db.all('SELECT * FROM gyms', (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+    });
 });
 
 // Start the server
