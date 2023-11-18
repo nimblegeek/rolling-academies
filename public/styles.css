@@ -1,14 +1,13 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+/* Add this to your style.css file */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-#app {
-    padding: 50px;
+.gym-card {
+    border: 1px solid #ccc;
+    padding: 10px;
 }
 
-h1 {
-    color: #333;
-}
+/* Additional styling as needed */
