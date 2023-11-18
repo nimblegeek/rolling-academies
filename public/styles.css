@@ -1,4 +1,7 @@
-/* Add this to your style.css file */
+
+/**
+*/
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
